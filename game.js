@@ -4,23 +4,31 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
 
-// Start of the game:
-window.addEventListener('load', startGame);
+let canvasSize;
+let elementsSize;
+
+// Start of the game in windows:
+window.addEventListener('load', setCanvasSize);
+window.addEventListener('resize', setCanvasSize);
 
 
-function startGame() {
-  let canvasSize;
-
+function setCanvasSize() {
   if (window.innerHeight > window.innerWidth) {
-    canvasSize = window.innerWidth * 0.8
+    canvasSize = window.innerWidth * 0.8;
   } else {
-    canvasSize = window.innerHeight * 0.8
+    canvasSize = window.innerHeight * 0.8;
   }
 
   canvas.setAttribute('width', canvasSize);
   canvas.setAttribute('height', canvasSize);
 
-  const elementsSize = canvasSize/10;
+  elementsSize = canvasSize / 10;
+
+  startGame();
+}
+
+
+function startGame() {
 
   console.log(canvasSize);
   console.log(elementsSize);
@@ -45,4 +53,3 @@ function startGame() {
   // game.textAlign = 'start'
   // game.fillText('Platzi', 100, 100);
 }
-
