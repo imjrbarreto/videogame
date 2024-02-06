@@ -28,38 +28,21 @@ function setCanvasSize() {
 }
 
 
-const map = maps[2];
+const map = maps[0];
 const mapRows = map.trim().split('\n');
-const mapRowCols = mapRows.map(row => row.trim().split(''))
+const mapRowCols = mapRows.map(row => row.trim().split(''));
 
-console.log(map);
-console.log(mapRows);
-console.log(mapRowCols);
 
 function startGame() {
-
-  // console.log(canvasSize);
-  // console.log(elementsSize);
-
   game.font = elementsSize + 'px Verdana';
   game.textAlign = 'end';
 
-  for (let row = 1; row <= 10; row++) {
-    for (let col = 1; col <= 10; col++) {
-      game.fillText(emojis[mapRowCols[row-1][col-1]], elementsSize * col, elementsSize * row);
-    }
-  }
-
-
-  // window.innerWidth
-  // window.innerHeight
-
-  // game.fillRect(0,0,100,100);
-  // game.clearRect(0,0,50,50);
-  // game.clearRect(50,50,100,100);
-
-  // game.font = '25px Verdana';
-  // game.fillStyle = "purple";
-  // game.textAlign = 'start'
-  // game.fillText('Platzi', 100, 100);
+  mapRowCols.forEach((row, rowI) => {
+    row.forEach((col, colI) => {
+      const emoji = emojis[col];
+      const posX = elementsSize*(colI + 1);
+      const posY = elementsSize*(rowI + 1);
+      game.fillText(emoji, posX, posY);
+    });
+  });
 }
